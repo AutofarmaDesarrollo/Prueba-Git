@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8A0B39A6-9C17-4DF2-A7F5-7135CC431DD3}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Primer_Proyecto.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\002_Fundamentos\Fundamentos_de_Programacion_Pascal.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Primer_Proyecto">
+        <MSBuild Projects="Primer_Proyecto.dproj"/>
+    </Target>
+    <Target Name="Primer_Proyecto:Clean">
+        <MSBuild Projects="Primer_Proyecto.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Primer_Proyecto:Make">
+        <MSBuild Projects="Primer_Proyecto.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Fundamentos_de_Programacion_Pascal">
+        <MSBuild Projects="..\002_Fundamentos\Fundamentos_de_Programacion_Pascal.dproj"/>
+    </Target>
+    <Target Name="Fundamentos_de_Programacion_Pascal:Clean">
+        <MSBuild Projects="..\002_Fundamentos\Fundamentos_de_Programacion_Pascal.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Fundamentos_de_Programacion_Pascal:Make">
+        <MSBuild Projects="..\002_Fundamentos\Fundamentos_de_Programacion_Pascal.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Primer_Proyecto;Fundamentos_de_Programacion_Pascal"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Primer_Proyecto:Clean;Fundamentos_de_Programacion_Pascal:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Primer_Proyecto:Make;Fundamentos_de_Programacion_Pascal:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
